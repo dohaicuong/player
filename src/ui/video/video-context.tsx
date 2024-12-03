@@ -1,9 +1,11 @@
-import { createContext, useContext } from 'react'
+import { createContext, useContext, useState } from 'react'
 import { usePlayerContext } from '../../player-context-provider'
 
 type VideoContext = {
 	provider: 'youtube' | 'vimeo' | 'other'
 	url: string
+	progress?: number
+	setProgress: (progress: number) => void
 }
 const VideoContext = createContext<VideoContext>(null!)
 
@@ -17,6 +19,7 @@ export const VideoContextProvider: React.FC<VideoContextProviderProps> = ({
 	children,
 }) => {
 	const { lo } = usePlayerContext()
+	const [progress, setProgress] = useState<number>()
 
 	// @ts-ignore
 	const provider = lo?.protected?.provider
@@ -29,7 +32,7 @@ export const VideoContextProvider: React.FC<VideoContextProviderProps> = ({
 	}
 
 	return (
-		<VideoContext.Provider value={{ provider, url }}>
+		<VideoContext.Provider value={{ provider, url, progress, setProgress }}>
 			{children}
 		</VideoContext.Provider>
 	)

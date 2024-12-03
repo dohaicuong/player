@@ -4,7 +4,7 @@ import { StartButton } from '../start-button'
 import { useVideoContext } from './video-context'
 
 const Go1VideoPlayer = () => {
-	const { url } = useVideoContext()
+	const { url, setProgress } = useVideoContext()
 	const ref = useRef<HTMLVideoElement>(null)
 
 	return (
@@ -24,6 +24,10 @@ const Go1VideoPlayer = () => {
 					height: '100%',
 					width: '100%',
 				})}
+				onTimeUpdate={(e) => {
+					const { currentTime, duration } = e.currentTarget
+					setProgress(Number((currentTime / duration).toFixed(2)))
+				}}
 			>
 				<track kind="captions" />
 			</video>

@@ -42,12 +42,7 @@ export const PlayerContextProvider: React.FC<PlayerContextProviderProps> = ({
 					headers: { Authorization: `Bearer ${jwt}` },
 					params: { id: contentId },
 					query: {
-						'include[]': [
-							'core',
-							'protected',
-							'provider',
-							'generated_metadata',
-						],
+						'include[]': ['core', 'protected', 'provider', 'relevance'],
 					},
 				})
 				.json()

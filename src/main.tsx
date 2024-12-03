@@ -13,7 +13,11 @@ createRoot(root).render(
 	<StrictMode>
 		<ThemeProvider attribute="class">
 			<NuqsAdapter>
-				<PlayerContextProvider>
+				<PlayerContextProvider
+					onPlay={() => {
+						console.log('start playing')
+					}}
+				>
 					<App />
 				</PlayerContextProvider>
 			</NuqsAdapter>
