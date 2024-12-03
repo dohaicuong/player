@@ -39,6 +39,8 @@ jobs:
           CODEARTIFACT_AUTH_TOKEN: ${{ secrets.CODEARTIFACT_AUTH_TOKEN }}
       - name: Build
         run: pnpm run build
+        env:
+          VITE_PUBLIC_API_ENDPOINT: ${{ vars.VITE_PUBLIC_API_ENDPOINT }}
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact
